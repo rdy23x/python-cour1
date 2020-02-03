@@ -2,7 +2,6 @@
 
 #declaration du dictionnaire clients
 clients = {} # clients = dict()
-
 def initialisationprogramme():
     #recuperation du nom du client
     nom_client = input("Entre le nom du client >")
