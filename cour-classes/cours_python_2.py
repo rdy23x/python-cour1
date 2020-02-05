@@ -61,11 +61,52 @@ class GestionClient:
             print(f"ce code client {code_client} n'existe pas dans la base de donnée")            
                     
     def supprimerclient(self):
-        pass
+        print("## Entrez le client à supprimer ##\n")
+        code_client = input("CodeClient>")
+        
+        if code_client in list(clientDataBase.keys()):
+            del clientDataBase[code_client]
+            print("Client Supprimmer\n")
+            self.listeclient()
+        else:
+            print("Le code client entrez n'est pas valide\n")
     
     def supprimercours(self):
-        pass
-    
+        suppc = True
+        while suppc:
+            print("## Entrez le client pour supprimer un article de la liste de cours ##\n")
+            code_client = input("CodeClient>")
+            if code_client in list(clientDataBase.keys()):
+                print(f"client {clientDataBase[code_client]['name']}. Liste de cours:\n")
+                for cours in clientDataBase[code_client]['cours']:
+                    print(f"{cours}\n")
+                cours = input("Quelle article voulez-vous supprimmer>")
+                if not cours:
+                    print("Vous n'avez rien entrez\n")
+                    verif = input("Voulez-vous continuer(oui) ou (non)>")
+                    if verif == "non":
+                        suppc = False
+                        break     
+                else:
+                    cours = cours.lower()
+                    clientDataBase[code_client]['cours'].remove(cours)
+                    print(f"Vous venez de supprimer l'article{cours}\n")
+                    verif = input("Voulez-vous continuer(oui) ou (non)>")
+                    if verif == "non":
+                        suppc = False
+                        break  
+                    self.listeclient()
+            else:
+                print("code client incorrect\n")
+            
     def viderpaniercours(self):
-        pass
+        print("## Entrez le client pour lequel vous voulez vider le panier\n")
+        code_client = input("CodeClient>")
+        if code_client in list(clientDataBase.keys()):
+            clientDataBase[code_client]['cours'] = []
+            print(f"Vous venez de vider le panier du client {clientDataBase[code_client]['name']}\n")
+            self.listeclient()
+        else:
+            print("code client incorrect\n")
+            self.listeclient()
     

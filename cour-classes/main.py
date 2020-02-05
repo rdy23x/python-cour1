@@ -7,7 +7,10 @@ gestclient = GestionClient()
 commande = {
     1:{"name":"Ajouter un client","cmd":gestclient.ajouterclient},
     2:{"name":"Ajouter des cours au panier client","cmd":gestclient.ajoutercoursclient},
-    3:{"name":"Quitter"}
+    3:{"name":"Supprimmer client","cmd":gestclient.supprimerclient},
+    4:{"name":"Supprimer un article du client","cmd":gestclient.supprimercours},
+    5:{"name":"vider le panier du client","cmd":gestclient.viderpaniercours},
+    7:{"name":"Quitter"}
     }
 
 while True:
@@ -20,7 +23,7 @@ while True:
     if not num:
         print("Commande entrer incorrect")
         continue
-    if num == 3:
+    if num == 7:
         print("Fin du programme")
         break
     else:
